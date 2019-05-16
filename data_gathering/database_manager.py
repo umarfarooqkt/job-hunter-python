@@ -41,7 +41,7 @@ class User(Base):
 
 class Database():
 
-    engine = create_engine(SQL_DB, echo=True)
+    engine = create_engine(MEMORY_DB, echo=True)
     Session = sessionmaker(bind=engine)
     session = Session()
 
