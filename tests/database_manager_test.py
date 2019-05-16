@@ -16,4 +16,9 @@ from database_manager import Database as db
 import unittest
 
 class TestDatabase(unittest.TestCase):
-    pass
+
+    def test_tester(self):
+        self.assertEquals(True,True)
+
+if __name__ == "__main__":
+    unittest.main()
