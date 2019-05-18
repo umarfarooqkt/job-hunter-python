@@ -9,11 +9,19 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, Integer, String, Date
 from sqlalchemy.orm import sessionmaker
+import logging
+
+log_to_file = False
+if  log_to_file:
+   logging.basicConfig(filename='app.log', filemode='w', format='%(name)s - %(levelname)s - %(message)s')
+   print("The logs are logged in app.log")
+else:
+    logging.basicConfig(level=1, format='%(name)s - %(levelname)s - %(message)s')
+    logging.warning('This will get logged to terminal')
 
 #Globals
 MEMORY_DB = 'sqlite:///:memory:'
 USER = 'root'
-PASSWORD = '03224884959'
 PASSWORD = 'root'
 PORT = '5432'
 HOST = 'localhost'
@@ -68,5 +76,5 @@ class Database():
     #def get_jobs(self,)
 
 # title: str, url: str, created_at: Date, location: str, description: str
-db = Database()
-print(db.get_tables())
+# db = Database()
+# print(db.get_tables())
