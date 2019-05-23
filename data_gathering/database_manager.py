@@ -42,6 +42,14 @@ class Job(Base):
     location = Column(String)
     description = Column(String)
 
+    def __init__ (self, id, title, url, created_at, location, description):
+        self.id = id
+        self.title = title
+        self.url = url
+        self.created_at = created_at
+        self.location = location
+        self.description = description
+
 class User(Base):
     __tablename__ = 'user'
     id = Column(Integer, primary_key=True)
@@ -52,29 +60,29 @@ class Database():
     engine = create_engine(MEMORY_DB, echo=True)
     Session = sessionmaker(bind=engine)
     session = Session()
+    Base.metadata.create_all(engine)
 
-    def create_db(self) -> None:
-        """
-        This method is intended to 
-        create an instance of database
-        """
-        Base.metadata.create_all(self.engine)
+    def get_session(self):
+        return self.session
 
     def get_tables(self):
         return self.engine.table_names()
 
-    def add_job(self, id: int, **kargs):
+    def get_job(self, id: int):
+        """
+        This method is to get any
+        unique job based on id
+        """
+        job = self.session.query(Job).get(id)
+        return job
+
+    def add_job(self, id: int,  title: str, url: str,\
+         created_at: Date, location: str, description: str):
         """
         This is the method to add jobs 
         to the database
         """
-        job = Job(id, kargs["title"], kargs["url"], 
-        kargs["created_at"], kargs["location"], 
-        kargs["description"])
+        job = Job(id, title, url,\
+        created_at, location, \
+        description)
         self.session.add(job)
-    
-    #def get_jobs(self,)
-
-# title: str, url: str, created_at: Date, location: str, description: str
-# db = Database()
-# print(db.get_tables())
