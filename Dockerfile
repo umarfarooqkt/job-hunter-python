@@ -6,8 +6,12 @@ RUN apt-get update -y \
 
 WORKDIR /usr/src/app
 COPY bootstrap.sh requirements.txt ./
-COPY service_manager/app.py ./
+COPY service_manager ./
 COPY data_gathering ./
+
+ENV DOCKER_ENV='True' \
+    DB_HOST='172.17.0.3' \
+    POSTGRES_PORT='5432'
 
 # Start app
 EXPOSE 5000
