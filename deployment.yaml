@@ -1,0 +1,26 @@
+---
+ apiVersion: extensions/v1beta1
+ kind: Deployment
+ metadata:
+   name: job-hunter-app
+ spec:
+   replicas: 2
+   template:
+     metadata:
+       labels:
+         app: web
+     spec:
+       containers:
+         - name: postgres-database-image
+           image: postgres
+           env:
+            - name: POSTGRES_USER
+              value: "root"
+            - name: POSTGRES_PASSWORD
+              value: "root"
+           ports:
+             - containerPort: 5432
+         - name: job-hunter-app-image
+           image: gcr.io/job-hunter-242523/main-app-four:v1
+           ports:
+             - containerPort: 5000

@@ -4,7 +4,7 @@ export FLASK_APP='app.py'
 
 pip install -r requirements.txt
 
-if [ -z $DOCKER_ENV ]; then
+if [ "${DOCKER_ENV}" = 'True' ]; then
     python data_miner.py &
 fi
 

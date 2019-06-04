@@ -1,0 +1,21 @@
+---
+apiVersion: v1
+kind: Pod
+ name: job-hunter-app
+  labels:
+   app: job-hunter-app-pod
+spec:
+ containers:
+   – name: postgres-database-image
+     image: postgres
+     env:
+      - name: POSTGRES_USER
+        value: "root"
+      - name: POSTGRES_PASSWORD
+        value: "root"
+     ports:
+       – containerPort: 5432
+   – name: job-hunter-app-image
+     image: gcr.io/job-hunter-242523/main-app:v1
+     ports:
+       – containerPort: 5000

@@ -11,7 +11,7 @@ from sqlalchemy import create_engine
 
 if __name__ == "__main__":
     db = Database()
-    database_manager.drop_database(db)
-    db.get_session().commit()
+    # database_manager.drop_database(db)
+    # db.get_session().commit()
     database_manager.create_database(db)
     db.get_session().commit()
