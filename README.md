@@ -1,6 +1,8 @@
 # job-hunter-python
 This is a newer version of job hunter application
 
+Job Hunter gathers open job listing from open source api's and stores them in a postgres database. A restful service on flask is launched to serve specific job applications.
+
 This is a python version of my jobhunter application This version has some updated features with some cool explorations
 
 System installations required:
