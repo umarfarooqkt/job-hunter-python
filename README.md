@@ -15,13 +15,13 @@ Running this application on a Kubernetes cluster is a bit of an overkill but if 
   This is because the deployment launches 2 or more replication. Let kubernetes have enough nodes to gain the full 
   advantage of those replications.
 - Build the provided docker container (Projec Id refers to the gcloud project id)
-    $ docker build -t gcr.io/${PROJECT_ID}/main-app-four:v1 ./
+   <p> $ docker build -t gcr.io/${PROJECT_ID}/main-app-four:v1 ./ </p>
 - Push the container to a container registery, from the name you can tell I intend to use googles container registery
-    $ docker push gcr.io/${PROJECT_ID}/main-app-four:v1
+   <p> $ docker push gcr.io/${PROJECT_ID}/main-app-four:v1 </p>
 - Create a deployement (Use the deployment.yaml)
-    $ kubectl create -f deployment.yaml
+   <p> $ kubectl create -f deployment.yaml </p>
 - Now expose the deployment to the outside world, using the kubernetes load balancer
-    $ kubectl expose deployment job-hunter-app --type=LoadBalancer --port 80 --target-port 5000
+   <p> $ kubectl expose deployment job-hunter-app --type=LoadBalancer --port 80 --target-port 5000 </p>
 
 There you go, you should have a kubernetes deployment at this point
 
