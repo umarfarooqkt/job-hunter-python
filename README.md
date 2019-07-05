@@ -42,5 +42,28 @@ To Run using all the dependencies use $pipenv shell (to access the dependencies)
 
 ### Database
 
-One approach to testing the database is to use  monkey patching to replace the actual database with an in memory sql lite.
+One approach to testing the database is to use monkey patching to replace the actual database dependencies.
 
+Advantages: 
+- Faster unit tests. 
+- Can run anywhere without depending on a connection to a db or local db setup.
+- Monkey patching really reduces the amount of work required for mocking.
+
+Disadvantages:
+- Too much monkey patching might reliability of tests.
+- SQL logic dependable methods can't be accurately tested.
+- Unit Tests should be as close to real world usage of methods in my opinion but monkey patching reduces that.
+
+Second approach to testing is to use the real production ready database based unit tests. This is the primary types of tests I write in this project.
+In my database manager I separate commits from database query based methods (this is a good practice anyways for example an error occurs somewhere in a request so a rollback might need to be done) this way I am able to test out methods and then roll them back, keeping them isolated.
+
+Advantages:
+- Testing really world usage of method. 
+- In depth testing of SQL logic as well.
+- Data integrity tests.
+- Can catch more errors potentially, maybe even unrelated ones.
+
+Disadvantages:
+- Slower tests. 
+- Might not be isolated.
+- Need Internet connection or local database setup.
