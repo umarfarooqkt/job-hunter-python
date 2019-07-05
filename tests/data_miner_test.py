@@ -14,6 +14,7 @@ parentdir = os.path.dirname(currentdir)
 sys.path.append(parentdir+"/data_gathering")
 import data_miner
 import unittest
+import json
 
 class TestDataMiner(unittest.TestCase):
 
@@ -23,6 +24,14 @@ class TestDataMiner(unittest.TestCase):
 
     def setUp(self):
         print("setup method")
+
+    def test_http_client_connection(self):
+        """
+        This test ensure that the client is able to connect
+        """
+        uri = "google.com"
+        response = data_miner.get_connection(uri, "GET")
+        self.assertTrue("<title>Google</title>" in str(response))
 
     def tearDown(self):
         print("teardown method")
